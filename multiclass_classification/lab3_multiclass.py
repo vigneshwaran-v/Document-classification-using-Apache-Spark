@@ -63,6 +63,8 @@ merge_udf3 = merge_udf2.union(health_udf)
 unknown_data = merge_udf3.select([column for column in merge_udf3.columns])
 unknown_data.show(5)
 
+#Reference: https://towardsdatascience.com/multi-class-text-classification-with-pyspark-7d78d022ed35
+
 #Tokenizing the input text files
 regexTokenizer = RegexTokenizer(inputCol="value", outputCol="words", pattern="\\W")
 
@@ -146,3 +148,4 @@ predictions4.show(10)
 
 evaluator = MulticlassClassificationEvaluator(predictionCol="prediction")
 print("-------Accuracy of unknown data using naive_bayes-----: " + str(evaluator.evaluate(predictions4)*100)+"%")
+
